@@ -23,10 +23,9 @@ import zope.schema.interfaces
 import zc.sourcefactory.interfaces
 
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.IFactoredSource)
 class FactoredSource(object):
     """An iterable source that was created from a source factory."""
-
-    zope.interface.implements(zc.sourcefactory.interfaces.IFactoredSource)
 
     factory = None
 
@@ -40,10 +39,12 @@ class FactoredSource(object):
         # This is potentially expensive!
         return len(list(self._get_filtered_values()))
 
-    def __nonzero__(self):
+    def __bool__(self):
         for dummy in self._get_filtered_values():
             return True
         return False
+
+    __nonzero__ = __bool__
 
     def __contains__(self, value):
         # This is potentially expensive!
@@ -56,11 +57,10 @@ class FactoredSource(object):
             yield value
 
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.IContextualSource)
 class FactoredContextualSource(FactoredSource):
     """An iterable context-aware source that was created from a source factory.
     """
-
-    zope.interface.implements(zc.sourcefactory.interfaces.IContextualSource)
 
     context = None
 

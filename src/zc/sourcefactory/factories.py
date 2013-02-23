@@ -24,13 +24,12 @@ import zc.sourcefactory.interfaces
 import zc.sourcefactory.source
 
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.ISourceFactory)
 class BasicSourceFactory(object):
     """Abstract base class for a source factory.
 
     Implementors must provide an implementation for `getValues`.
     """
-
-    zope.interface.implements(zc.sourcefactory.interfaces.ISourceFactory)
 
     source_class = zc.sourcefactory.source.FactoredSource
 
@@ -56,10 +55,9 @@ class ContextualSourceFactory(BasicSourceFactory):
         return FactoredContextualSourceBinder(factory, cls.source_class)
 
 
+@zope.interface.implementer(zope.schema.interfaces.IContextSourceBinder)
 class FactoredContextualSourceBinder(object):
     """A context source binder for factored sources."""
-
-    zope.interface.implements(zope.schema.interfaces.IContextSourceBinder)
 
     def __init__(self, factory, source_class):
         self.factory = factory

@@ -22,13 +22,12 @@ import zope.schema.interfaces
 import zc.sourcefactory.interfaces
 
 
+@zope.interface.implementer(zope.schema.interfaces.IContextSourceBinder)
 class NamedSource(object):
     """Factory for named sources.
 
     This is a generic thin wrapper to look up sources by name.
     """
-
-    zope.interface.implements(zope.schema.interfaces.IContextSourceBinder)
 
     def __init__(self, name):
         self.name = name

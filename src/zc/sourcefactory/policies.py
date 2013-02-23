@@ -23,8 +23,15 @@ import zc.sourcefactory.interfaces
 import zope.component
 import zope.intid.interfaces
 
+try:
+    unicode
+except NameError:
+    # Py3: Define unicode
+    unicode = str
+
 # Term policies
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.ITermPolicy)
 class BasicTermPolicy(object):
     """A basic term policy.
 
@@ -33,8 +40,6 @@ class BasicTermPolicy(object):
     getTitle uses IDCDescriptiveProperties.title and falls back to
     `str`-representation of the value.
     """
-
-    zope.interface.implements(zc.sourcefactory.interfaces.ITermPolicy)
 
     def createTerm(self, source, value, title, token, request):
         return zc.sourcefactory.browser.source.FactoredTerm(
@@ -49,10 +54,11 @@ class BasicTermPolicy(object):
         if md:
             title = md.title
         else:
-            title = unicode(value)
+            title = value.decode() if isinstance(value, bytes) else unicode(value)
         return title
 
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.ITermPolicy)
 class BasicContextualTermPolicy(BasicTermPolicy):
     """A basic contextual term policy.
 
@@ -60,8 +66,6 @@ class BasicContextualTermPolicy(BasicTermPolicy):
     argument.
 
     """
-
-    zope.interface.implements(zc.sourcefactory.interfaces.ITermPolicy)
 
     def createTerm(self, context, source, value, title, token, request):
         return super(BasicContextualTermPolicy, self).createTerm(
@@ -73,6 +77,7 @@ class BasicContextualTermPolicy(BasicTermPolicy):
 
 # Token policies
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.ITokenPolicy)
 class BasicTokenPolicy(object):
     """A basic token policy.
 
@@ -82,18 +87,17 @@ class BasicTokenPolicy(object):
     token.
     """
 
-    zope.interface.implements(zc.sourcefactory.interfaces.ITokenPolicy)
-
     def getValue(self, source, token):
         for value in source:
             if source.factory.getToken(value) == token:
                 return value
-        raise KeyError, "No value with token '%s'" % token
+        raise KeyError("No value with token '%s'" % token)
 
     def getToken(self, value):
         return zc.sourcefactory.interfaces.IToken(value)
 
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.IContextualTokenPolicy)
 class BasicContextualTokenPolicy(BasicTokenPolicy):
     """A basic contextual token policy.
 
@@ -102,22 +106,19 @@ class BasicContextualTokenPolicy(BasicTokenPolicy):
 
     """
 
-    zope.interface.implements(zc.sourcefactory.interfaces.IContextualTokenPolicy)
-
     def getValue(self, context, source, token):
         for value in source:
             if source.factory.getToken(context, value) == token:
                 return value
-        raise KeyError, "No value with token '%s'" % token
+        raise KeyError("No value with token '%s'" % token)
 
     def getToken(self, context, value):
         return super(BasicContextualTokenPolicy, self).getToken(value)
 
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.ITokenPolicy)
 class IntIdTokenPolicy(object):
     """A token policy based on intids."""
-
-    zope.interface.implements(zc.sourcefactory.interfaces.ITokenPolicy)
 
     def getValue(self, source, token):
         iid = int(token)
@@ -143,6 +144,7 @@ class IntIdTokenPolicy(object):
 
 # Value policies
 
+@zope.interface.implementer(zc.sourcefactory.interfaces.IValuePolicy)
 class BasicValuePolicy(object):
     """An abstract basic value policy.
 
@@ -151,11 +153,11 @@ class BasicValuePolicy(object):
     The filter allows all values.
     """
 
-    zope.interface.implements(zc.sourcefactory.interfaces.IValuePolicy)
-
     def filterValue(self, value):
         return True
 
+@zope.interface.implementer(
+        zc.sourcefactory.interfaces.IContextualValuePolicy)
 class BasicContextualValuePolicy(BasicValuePolicy):
     """An abstract basic value policy.
 
@@ -163,9 +165,6 @@ class BasicContextualValuePolicy(BasicValuePolicy):
 
     The filter allows all values.
     """
-
-    zope.interface.implements(
-        zc.sourcefactory.interfaces.IContextualValuePolicy)
 
     def filterValue(self, context, value):
         return True

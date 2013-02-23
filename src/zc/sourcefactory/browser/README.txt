@@ -14,10 +14,10 @@ Let's start with a simple source factory:
   >>> import zc.sourcefactory.basic
   >>> class DemoSource(zc.sourcefactory.basic.BasicSourceFactory):
   ...     def getValues(self):
-  ...         return ['a', 'b', 'c', 'd']
+  ...         return [b'a', b'b', b'c', b'd']
   >>> source = DemoSource()
   >>> list(source)
-  ['a', 'b', 'c', 'd']
+  [b'a', b'b', b'c', b'd']
 
 We need a request first, then we can adapt the source to ITerms:
 
@@ -32,13 +32,13 @@ We need a request first, then we can adapt the source to ITerms:
 
 For each value we get a factored term:
 
-  >>> terms.getTerm('a')
+  >>> terms.getTerm(b'a')
   <zc.sourcefactory.browser.source.FactoredTerm object at 0x...>
-  >>> terms.getTerm('b')
+  >>> terms.getTerm(b'b')
   <zc.sourcefactory.browser.source.FactoredTerm object at 0x...>
-  >>> terms.getTerm('c')
+  >>> terms.getTerm(b'c')
   <zc.sourcefactory.browser.source.FactoredTerm object at 0x...>
-  >>> terms.getTerm('d')
+  >>> terms.getTerm(b'd')
   <zc.sourcefactory.browser.source.FactoredTerm object at 0x...>
 
 Unicode values are allowed as well:

@@ -13,29 +13,72 @@
 #
 ##############################################################################
 """Unit tests
-
 """
-__docformat__ = "reStructuredText"
-
 import doctest
-import os.path
+import re
 import unittest
+import ZODB.interfaces
+import ZODB.utils
+import zope.component
+import zope.interface
+from zope.component import testing
+from zope.configuration import xmlconfig
+from zope.site import folder
+from zope.site.interfaces import IFolder
+from zope.testing import renormalizing
 
-import zope.app.testing.functional
-from zope.app.testing.functional import FunctionalDocFileSuite
+import zc.sourcefactory
 
-here = os.path.realpath(os.path.dirname(__file__))
+checker = renormalizing.RENormalizing([
+    # Python 3 unicode removed the "u".
+    (re.compile("u('.*?')"),
+     r"\1"),
+    (re.compile('u(".*?")'),
+     r"\1"),
+    # Python 3 unicode adds "b".
+    (re.compile("b('[a-zA-Z0-9]*?')"),
+     r"\1"),
+    (re.compile('b("[a-zA-Z0-9]*?")'),
+     r"\1"),
+    # Python 3 renamed builtins
+    (re.compile('__builtin__'),
+     r"builtins"),
+    # Python 3 adds module name to exceptions.
+    (re.compile("zope.security.interfaces.ForbiddenAttribute"),
+     r"ForbiddenAttribute"),
+    ])
 
-SourceFactoryLayer = zope.app.testing.functional.ZCMLLayer(
-            os.path.join(here, "ftesting.zcml"), __name__, "SourceFactoryLayer")
+class ConnectionStub(object):
 
+    _id = 0
+
+    def __call__(self, obj):
+        return self
+
+    def add(self, obj):
+        self._id +=1
+        obj._p_oid = ZODB.utils.p64(self._id)
+
+
+def setUp(test):
+    testing.setUp(test)
+    xmlconfig.XMLConfig('ftesting.zcml', zc.sourcefactory)()
+    zope.component.provideAdapter(
+        ConnectionStub(), (IFolder,), ZODB.interfaces.IConnection)
+    test.globs['rootFolder'] = folder.rootFolder()
+
+def tearDown(test):
+    testing.tearDown(test)
 
 def test_suite():
-    suite = unittest.TestSuite()
-    suite.addTest(doctest.DocFileSuite('README.txt'))
-    suite.addTest(doctest.DocFileSuite('mapping.txt'))
-    suite.addTest(doctest.DocFileSuite('constructors.txt'))
-    adapters = FunctionalDocFileSuite('adapters.txt')
-    adapters.layer = SourceFactoryLayer
-    suite.addTest(adapters)
-    return suite
+    return unittest.TestSuite((
+            doctest.DocFileSuite(
+                'README.txt'),
+            doctest.DocFileSuite(
+                'mapping.txt'),
+            doctest.DocFileSuite(
+                'constructors.txt'),
+            doctest.DocFileSuite(
+                'adapters.txt', setUp=setUp, tearDown=tearDown,
+                optionflags=doctest.ELLIPSIS),
+            ))

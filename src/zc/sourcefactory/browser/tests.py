@@ -12,23 +12,18 @@
 #
 ##############################################################################
 """Unit tests
-
 """
-__docformat__ = "reStructuredText"
-
 import doctest
 import unittest
-import zope.app.testing.functional
 
-from zc.sourcefactory.tests import SourceFactoryLayer
+from zc.sourcefactory.tests import setUp, tearDown, checker
 
 def test_suite():
-    suite = unittest.TestSuite()
-    token = zope.app.testing.functional.FunctionalDocFileSuite('token.txt')
-    token.layer = SourceFactoryLayer
-    readme =  zope.app.testing.functional.FunctionalDocFileSuite(
-            'README.txt', optionflags=doctest.ELLIPSIS)
-    readme.layer = SourceFactoryLayer
-    suite.addTest(token)
-    suite.addTest(readme)
-    return suite
+    return unittest.TestSuite((
+            doctest.DocFileSuite(
+                'token.txt', setUp=setUp, tearDown=tearDown,
+                checker=checker, optionflags=doctest.ELLIPSIS),
+            doctest.DocFileSuite(
+                'README.txt', setUp=setUp, tearDown=tearDown,
+                checker=checker, optionflags=doctest.ELLIPSIS),
+            ))

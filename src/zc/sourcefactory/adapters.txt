@@ -17,8 +17,8 @@ ISourceQueriables
 
   >>> from zope.schema.interfaces import ISourceQueriables
   >>> import zope.interface
-  >>> class SourceQueriables(object):
-  ...     zope.interface.implements(ISourceQueriables)
+  >>> @zope.interface.implementer(ISourceQueriables)
+  ... class SourceQueriables(object):
   ...     def __init__(self, source, factory):
   ...         self.source = source
   ...         self.factory = factory

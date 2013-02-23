@@ -123,7 +123,7 @@ it:
 
   >>> class FilteringSource(zc.sourcefactory.basic.BasicSourceFactory):
   ...     def getValues(self):
-  ...         return xrange(1,20)
+  ...         return iter(range(1,20))
   ...     def filterValue(self, value):
   ...         return value % 2
   >>> source = FilteringSource()

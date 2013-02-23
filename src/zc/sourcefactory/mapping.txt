@@ -60,7 +60,7 @@ want to make sure it isn't called.
   ...         raise RuntimeError("oops, don't want to call __len__")
   ...
   ...     def __iter__(self):
-  ...         return iter(xrange(999999))
+  ...         return iter(range(999999))
 
   >>> expensive_source = ExpensiveSource()
   >>> mapped_source = ValueMappingSource(expensive_source, map)

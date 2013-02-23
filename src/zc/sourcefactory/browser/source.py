@@ -11,12 +11,8 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Interfaces for zc.z4m.
-
 """
-__docformat__ = "reStructuredText"
-
-
+"""
 import zope.interface
 import zope.component
 import zope.browser.interfaces
@@ -26,12 +22,11 @@ import zope.schema.interfaces
 import zc.sourcefactory.source
 
 
+@zope.interface.implementer(zope.browser.interfaces.ITerms)
 class FactoredTerms(object):
     """A terms implementation that knows how to handle a source that was
     created through a source factory.
     """
-
-    zope.interface.implements(zope.browser.interfaces.ITerms)
 
     zope.component.adapts(
         zc.sourcefactory.source.FactoredSource,
@@ -72,10 +67,9 @@ class FactoredContextualTerms(FactoredTerms):
                                             token)
 
 
+@zope.interface.implementer(zope.schema.interfaces.ITitledTokenizedTerm)
 class FactoredTerm(object):
     """A title tokenized term."""
-
-    zope.interface.implements(zope.schema.interfaces.ITitledTokenizedTerm)
 
     def __init__(self, value, title, token):
         self.value = value

@@ -44,17 +44,18 @@ Persistent
 If an object is persistent but has not been added to a database yet, it will
 be added to the database of it's __parent__:
 
-  >>> root = getRootFolder()
+  >>> root = rootFolder
   >>> p1 = PersistentDummy()
   >>> p1.__parent__ = root
   >>> zc.sourcefactory.browser.token.fromPersistent(p1)
-  '0x...'
+  u'0x01'
 
 If an object has no parent, we fail:
 
   >>> p2 = PersistentDummy()
   >>> zc.sourcefactory.browser.token.fromPersistent(p2)
   Traceback (most recent call last):
+  ...
   ValueError: Can not determine OID for <PersistentDummy object at 0x...>
 
 Security proxied objects are unwrapped to get to their oid or connection
@@ -71,7 +72,7 @@ attribute:
   ForbiddenAttribute: ('_p_jar', <PersistentDummy object at 0x...>)
 
   >>> zc.sourcefactory.browser.token.fromPersistent(p3p)
-  '0x...'
+  u'0x02'
 
 
 As a side-effect `p3` now has an _p_oid assigned.  When an object already has
@@ -79,8 +80,7 @@ an OID the connection is not queried, so a __parent__ would not be necessary:
 
   >>> del p3.__parent__
   >>> zc.sourcefactory.browser.token.fromPersistent(p3p)
-  '0x...'
-
+  u'0x02'
 
 
 Interfaces

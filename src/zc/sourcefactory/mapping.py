@@ -20,9 +20,8 @@ import zope.interface
 import zope.schema.interfaces
 
 
+@zope.interface.implementer(zope.schema.interfaces.IContextSourceBinder)
 class ValueMappingSourceContextBinder(object):
-
-    zope.interface.implements(zope.schema.interfaces.IContextSourceBinder)
 
     def __init__(self, base, map):
         self.base = base
@@ -33,9 +32,8 @@ class ValueMappingSourceContextBinder(object):
         return ValueMappingSource(source, self.map)
 
 
+@zope.interface.implementer(zope.schema.interfaces.IIterableSource)
 class ValueMappingSource(object):
-
-    zope.interface.implements(zope.schema.interfaces.IIterableSource)
 
     def __init__(self, base, map):
         self.base = base
@@ -72,7 +70,9 @@ class ValueMappingSource(object):
     def __len__(self):
         return len(self.base)
 
-    def __nonzero__(self):
+    def __bool__(self):
         for dummy in self.base:
             return True
         return False
+
+    __nonzero__ = __bool__

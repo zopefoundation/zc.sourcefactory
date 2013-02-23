@@ -12,11 +12,7 @@
 #
 ##############################################################################
 """Mapping-source related terms stuff
-
 """
-__docformat__ = "reStructuredText"
-
-
 import zope.proxy
 import zope.interface
 import zope.component
@@ -26,12 +22,11 @@ import zope.publisher.interfaces.browser
 import zc.sourcefactory.mapping
 
 
+@zope.interface.implementer(zope.browser.interfaces.ITerms)
 class MappedTerms(object):
     """A terms implementation that knows how to handle a source that was 
     created through a source factory.
     """
-
-    zope.interface.implements(zope.browser.interfaces.ITerms)
 
     zope.component.adapts(zc.sourcefactory.mapping.ValueMappingSource,
         zope.publisher.interfaces.browser.IBrowserRequest)

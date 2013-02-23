@@ -12,14 +12,9 @@
 #
 ##############################################################################
 """Various token adapters.
-
 """
-__docformat__ = "reStructuredText"
-
-try:
-    import hashlib
-except ImportError:
-    import md5 as hashlib # Python 2.4 compat
+import hashlib
+import sys
 
 import ZODB.utils
 import ZODB.interfaces
@@ -31,12 +26,21 @@ import zope.interface
 
 import zc.sourcefactory.interfaces
 
+try:
+    unicode
+except NameError:
+    # Py3: Define unicode
+    unicode = str
 
-@zope.component.adapter(str)
+PY3 = sys.version_info[0] == 3
+
+@zope.component.adapter(bytes)
 @zope.interface.implementer(zc.sourcefactory.interfaces.IToken)
 def fromString(value):
     # We hash generic strings to be sure they are suitable
     # for URL encoding.
+    if not isinstance(value, bytes):
+        value = value.encode()
     return hashlib.md5(value).hexdigest()
 
 
