@@ -5,12 +5,6 @@ Changes
 0.8.0 (unreleased)
 ==================
 
-- Nothing changed yet.
-
-
-0.7.1 (unreleased)
-==================
-
 - ``BasicSourceFactory`` now uses a class variable to tell what kind of
   source to make. (Same mechanism as it was added for
   ``ContextualSourceFactory`` in version 0.5.0).
