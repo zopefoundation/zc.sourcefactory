@@ -20,6 +20,10 @@ Changes
 
 - Dropped support for Python 2.4 and 2.5.
 
+
+0.8.0 (2013-10-04)
+==================
+
 - ``BasicSourceFactory`` now uses a class variable to tell what kind of
   source to make. (Same mechanism as it was added for
   ``ContextualSourceFactory`` in version 0.5.0).
