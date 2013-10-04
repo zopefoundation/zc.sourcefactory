@@ -2,7 +2,7 @@
 Changes
 =======
 
-0.8.0 (unreleased)
+0.8.0 (2013-10-04)
 ==================
 
 - ``BasicSourceFactory`` now uses a class variable to tell what kind of

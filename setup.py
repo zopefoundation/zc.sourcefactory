@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-version = '0.8.0.dev0'
+version = '0.8.0'
 
 from setuptools import setup, find_packages
 import os.path
