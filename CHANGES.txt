@@ -2,8 +2,8 @@
 Changes
 =======
 
-1.0.0a2 (unreleased)
-====================
+1.0.0 (2016-08-02)
+==================
 
 - Claim support for Python 3.4 and 3.5.
 
