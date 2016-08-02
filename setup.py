@@ -38,7 +38,7 @@ def alltests():
 
 setup(
     name='zc.sourcefactory',
-    version='1.0.0',
+    version='1.1.0.dev0',
     author='Zope Corporation and Contributors',
     author_email='zope-dev@zope.org',
     url='http://pypi.python.org/pypi/zc.sourcefactory',
