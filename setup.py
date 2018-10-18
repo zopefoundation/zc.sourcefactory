@@ -56,7 +56,7 @@ setup(
         ),
     classifiers = [
         'Topic :: Software Development',
-        'Framework :: Zope3',
+        'Framework :: Zope :: 3',
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
