@@ -19,8 +19,8 @@ import os.path
 
 def read_file(*args):
     path = os.path.join(os.path.dirname(__file__), *args)
-    file_contents = open(path, 'r').read()
-    return file_contents + '\n\n'
+    with open(path, 'r') as f:
+        return f.read() + '\n\n'
 
 setup(
     name='zc.sourcefactory',
@@ -32,6 +32,8 @@ setup(
     description='An easy way to create custom Zope sources.',
     license='ZPL 2.1',
     long_description=(
+        read_file('README.txt') +
+        '\n\n.. contents::\n\n' +
         read_file('src', 'zc', 'sourcefactory', 'README.txt') +
         read_file('src', 'zc', 'sourcefactory', 'mapping.txt') +
         read_file('src', 'zc', 'sourcefactory', 'constructors.txt') +
