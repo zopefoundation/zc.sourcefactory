@@ -18,7 +18,7 @@ import os.path
 
 
 def read_file(*args):
-    path = os.path.join(os.path.dirname(__file__), *args)
+    path = os.path.join(*args)
     with open(path, 'r') as f:
         return f.read() + '\n\n'
 
