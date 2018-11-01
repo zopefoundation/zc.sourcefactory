@@ -32,7 +32,7 @@ setup(
     description='An easy way to create custom Zope sources.',
     license='ZPL 2.1',
     long_description=(
-        read_file('README.txt') +
+        read_file('README.rst') +
         '\n\n.. contents::\n\n' +
         read_file('src', 'zc', 'sourcefactory', 'README.txt') +
         read_file('src', 'zc', 'sourcefactory', 'mapping.txt') +
