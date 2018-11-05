@@ -80,6 +80,7 @@ setup(
     extras_require={
         'test': [
             'zope.component[zcml]',
+            'persistent >= 4.4.3',
             'zope.site',
             'zope.testing',
             'zope.testrunner',
