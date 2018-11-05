@@ -1,8 +1,8 @@
 include *.rst
 include *.txt
+include .coveragerc
 include buildout.cfg
 include tox.ini
 
-recursive-include src *
-
-global-exclude *.pyc
+recursive-include src *.txt
+recursive-include src *.zcml
