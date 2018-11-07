@@ -2,6 +2,7 @@
 __pycache__
 src/*.egg-info
 
+.coverage
 .installed.cfg
 .tox
 bin
