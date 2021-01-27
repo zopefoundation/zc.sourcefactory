@@ -34,6 +34,7 @@ except NameError:
 
 PY3 = sys.version_info[0] == 3
 
+
 @zope.component.adapter(bytes)
 @zope.interface.implementer(zc.sourcefactory.interfaces.IToken)
 def fromString(value):

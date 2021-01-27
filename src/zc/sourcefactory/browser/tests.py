@@ -18,12 +18,13 @@ import unittest
 
 from zc.sourcefactory.tests import setUp, tearDown, checker
 
+
 def test_suite():
     return unittest.TestSuite((
-            doctest.DocFileSuite(
-                'token.txt', setUp=setUp, tearDown=tearDown,
-                checker=checker, optionflags=doctest.ELLIPSIS),
-            doctest.DocFileSuite(
-                'README.txt', setUp=setUp, tearDown=tearDown,
-                checker=checker, optionflags=doctest.ELLIPSIS),
-            ))
+        doctest.DocFileSuite(
+            'token.txt', setUp=setUp, tearDown=tearDown,
+            checker=checker, optionflags=doctest.ELLIPSIS),
+        doctest.DocFileSuite(
+            'README.txt', setUp=setUp, tearDown=tearDown,
+            checker=checker, optionflags=doctest.ELLIPSIS),
+    ))

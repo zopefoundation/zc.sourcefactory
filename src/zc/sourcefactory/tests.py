@@ -46,7 +46,8 @@ checker = renormalizing.RENormalizing([
     # Python 3 adds module name to exceptions.
     (re.compile("zope.security.interfaces.ForbiddenAttribute"),
      r"ForbiddenAttribute"),
-    ])
+])
+
 
 class ConnectionStub(object):
 
@@ -56,7 +57,7 @@ class ConnectionStub(object):
         return self
 
     def add(self, obj):
-        self._id +=1
+        self._id += 1
         obj._p_oid = ZODB.utils.p64(self._id)
 
 
@@ -67,18 +68,20 @@ def setUp(test):
         ConnectionStub(), (IFolder,), ZODB.interfaces.IConnection)
     test.globs['rootFolder'] = folder.rootFolder()
 
+
 def tearDown(test):
     testing.tearDown(test)
 
+
 def test_suite():
     return unittest.TestSuite((
-            doctest.DocFileSuite(
-                'README.txt'),
-            doctest.DocFileSuite(
-                'mapping.txt'),
-            doctest.DocFileSuite(
-                'constructors.txt'),
-            doctest.DocFileSuite(
-                'adapters.txt', setUp=setUp, tearDown=tearDown,
-                optionflags=doctest.ELLIPSIS),
-            ))
+        doctest.DocFileSuite(
+            'README.txt'),
+        doctest.DocFileSuite(
+            'mapping.txt'),
+        doctest.DocFileSuite(
+            'constructors.txt'),
+        doctest.DocFileSuite(
+            'adapters.txt', setUp=setUp, tearDown=tearDown,
+            optionflags=doctest.ELLIPSIS),
+    ))

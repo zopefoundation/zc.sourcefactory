@@ -22,6 +22,7 @@ def read_file(*args):
     with open(path, 'r') as f:
         return f.read() + '\n\n'
 
+
 setup(
     name='zc.sourcefactory',
     version='1.2.dev0',
@@ -56,6 +57,8 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
