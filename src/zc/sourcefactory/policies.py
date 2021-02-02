@@ -54,9 +54,10 @@ class BasicTermPolicy(object):
 
         if md:
             title = md.title
+        elif isinstance(value, bytes):
+            title = value.decode()
         else:
-            title = value.decode() if isinstance(value,
-                                                 bytes) else unicode(value)
+            title = unicode(value)
         return title
 
 
