@@ -22,15 +22,13 @@ import zope.schema.interfaces
 import zc.sourcefactory.source
 
 
+@zope.component.adapter(zc.sourcefactory.source.FactoredSource,
+                        zope.publisher.interfaces.browser.IBrowserRequest)
 @zope.interface.implementer(zope.browser.interfaces.ITerms)
 class FactoredTerms(object):
     """A terms implementation that knows how to handle a source that was
     created through a source factory.
     """
-
-    zope.component.adapts(
-        zc.sourcefactory.source.FactoredSource,
-        zope.publisher.interfaces.browser.IBrowserRequest)
 
     def __init__(self, source, request):
         self.source = source
@@ -46,14 +44,12 @@ class FactoredTerms(object):
         return self.source.factory.getValue(self.source, token)
 
 
+@zope.component.adapter(zc.sourcefactory.source.FactoredContextualSource,
+                        zope.publisher.interfaces.browser.IBrowserRequest)
 class FactoredContextualTerms(FactoredTerms):
     """A terms implementation that knows how to handle a source that was
     created through a contextual source factory.
     """
-
-    zope.component.adapts(
-        zc.sourcefactory.source.FactoredContextualSource,
-        zope.publisher.interfaces.browser.IBrowserRequest)
 
     def getTerm(self, value):
         title = self.source.factory.getTitle(self.source.context, value)
