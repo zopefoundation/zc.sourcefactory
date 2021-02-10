@@ -26,10 +26,11 @@ import zope.intid.interfaces
 try:
     unicode
 except NameError:
-    # Py3: Define unicode
+    # PY3: Define unicode
     unicode = str
 
 # Term policies
+
 
 @zope.interface.implementer(zc.sourcefactory.interfaces.ITermPolicy)
 class BasicTermPolicy(object):
@@ -53,8 +54,10 @@ class BasicTermPolicy(object):
 
         if md:
             title = md.title
+        elif isinstance(value, bytes):
+            title = value.decode()
         else:
-            title = value.decode() if isinstance(value, bytes) else unicode(value)
+            title = unicode(value)
         return title
 
 
@@ -156,8 +159,9 @@ class BasicValuePolicy(object):
     def filterValue(self, value):
         return True
 
+
 @zope.interface.implementer(
-        zc.sourcefactory.interfaces.IContextualValuePolicy)
+    zc.sourcefactory.interfaces.IContextualValuePolicy)
 class BasicContextualValuePolicy(BasicValuePolicy):
     """An abstract basic value policy.
 
@@ -177,7 +181,9 @@ class BasicSourcePolicy(BasicValuePolicy, BasicTokenPolicy, BasicTermPolicy):
 
 
 class BasicContextualSourcePolicy(
-    BasicContextualValuePolicy, BasicContextualTokenPolicy, BasicContextualTermPolicy):
+        BasicContextualValuePolicy,
+        BasicContextualTokenPolicy,
+        BasicContextualTermPolicy):
     pass
 
 

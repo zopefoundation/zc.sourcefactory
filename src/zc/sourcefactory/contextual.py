@@ -22,6 +22,6 @@ import zc.sourcefactory.policies
 
 
 class BasicContextualSourceFactory(
-    zc.sourcefactory.factories.ContextualSourceFactory,
-    zc.sourcefactory.policies.BasicContextualSourcePolicy):
+        zc.sourcefactory.factories.ContextualSourceFactory,
+        zc.sourcefactory.policies.BasicContextualSourcePolicy):
     """Abstract base implementation for a basic contextual source factory."""

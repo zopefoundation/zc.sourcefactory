@@ -20,6 +20,7 @@ __docformat__ = "reStructuredText"
 import zope.interface
 import zope.schema.interfaces
 
+
 class ISourceFactory(zope.interface.Interface):
 
     def __call__():
@@ -133,10 +134,11 @@ class IContextualValuePolicy(zope.interface.Interface):
 
 # Standard combined policies
 
+
 class ISourcePolicy(ITokenPolicy, ITermPolicy, IValuePolicy):
     pass
 
 
 class IContextualSourcePolicy(
-    ITokenPolicy, IContextualTermPolicy, IContextualValuePolicy):
+        ITokenPolicy, IContextualTermPolicy, IContextualValuePolicy):
     pass
