@@ -14,7 +14,6 @@
 """Various token adapters.
 """
 import hashlib
-import sys
 
 import persistent.interfaces
 import ZODB.interfaces
@@ -24,15 +23,6 @@ import zope.interface
 import zope.proxy
 
 import zc.sourcefactory.interfaces
-
-
-try:
-    unicode
-except NameError:
-    # Py3: Define unicode
-    unicode = str
-
-PY3 = sys.version_info[0] == 3
 
 
 @zope.component.adapter(bytes)
@@ -45,7 +35,7 @@ def fromString(value):
     return hashlib.md5(value).hexdigest()
 
 
-@zope.component.adapter(unicode)
+@zope.component.adapter(str)
 @zope.interface.implementer(zc.sourcefactory.interfaces.IToken)
 def fromUnicode(value):
     value = value.encode("utf-8")
@@ -86,4 +76,4 @@ def fromPersistent(value):
 @zope.interface.implementer(zc.sourcefactory.interfaces.IToken)
 def fromInterface(value):
     # Interface are identified by their module path and name
-    return "%s.%s" % (value.__module__, value.__name__)
+    return "{}.{}".format(value.__module__, value.__name__)

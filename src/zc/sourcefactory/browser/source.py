@@ -25,7 +25,7 @@ import zc.sourcefactory.source
 @zope.component.adapter(zc.sourcefactory.source.FactoredSource,
                         zope.publisher.interfaces.browser.IBrowserRequest)
 @zope.interface.implementer(zope.browser.interfaces.ITerms)
-class FactoredTerms(object):
+class FactoredTerms:
     """A terms implementation that knows how to handle a source that was
     created through a source factory.
     """
@@ -64,7 +64,7 @@ class FactoredContextualTerms(FactoredTerms):
 
 
 @zope.interface.implementer(zope.schema.interfaces.ITitledTokenizedTerm)
-class FactoredTerm(object):
+class FactoredTerm:
     """A title tokenized term."""
 
     def __init__(self, value, title, token):

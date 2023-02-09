@@ -21,7 +21,7 @@ from setuptools import setup
 
 def read_file(*args):
     path = os.path.join(*args)
-    with open(path, 'r') as f:
+    with open(path) as f:
         return f.read() + '\n\n'
 
 
@@ -29,7 +29,7 @@ setup(
     name='zc.sourcefactory',
     version='2.0.dev0',
     author='Zope Corporation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     url='https://github.com/zopefoundation/zc.sourcefactory',
     keywords='zope vocabulary source factory',
     description='An easy way to create custom Zope sources.',
@@ -66,6 +66,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     include_package_data=True,
+    python_requires='>=3.7',
     install_requires=[
         'ZODB',
         'persistent',

@@ -16,7 +16,6 @@
 import doctest
 import unittest
 
-from zc.sourcefactory.tests import checker
 from zc.sourcefactory.tests import setUp
 from zc.sourcefactory.tests import tearDown
 
@@ -25,8 +24,8 @@ def test_suite():
     return unittest.TestSuite((
         doctest.DocFileSuite(
             'token.txt', setUp=setUp, tearDown=tearDown,
-            checker=checker, optionflags=doctest.ELLIPSIS),
+            optionflags=doctest.ELLIPSIS),
         doctest.DocFileSuite(
             'README.txt', setUp=setUp, tearDown=tearDown,
-            checker=checker, optionflags=doctest.ELLIPSIS),
+            optionflags=doctest.ELLIPSIS),
     ))

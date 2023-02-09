@@ -23,7 +23,7 @@ import zc.sourcefactory.interfaces
 
 
 @zope.interface.implementer(zope.schema.interfaces.IContextSourceBinder)
-class NamedSource(object):
+class NamedSource:
     """Factory for named sources.
 
     This is a generic thin wrapper to look up sources by name.

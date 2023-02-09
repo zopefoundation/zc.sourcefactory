@@ -15,7 +15,6 @@
 """Unit tests
 """
 import doctest
-import re
 import unittest
 
 import ZODB.interfaces
@@ -26,32 +25,11 @@ from zope.component import testing
 from zope.configuration import xmlconfig
 from zope.site import folder
 from zope.site.interfaces import IFolder
-from zope.testing import renormalizing
 
 import zc.sourcefactory
 
 
-checker = renormalizing.RENormalizing([
-    # Python 3 unicode removed the "u".
-    (re.compile("u('.*?')"),
-     r"\1"),
-    (re.compile('u(".*?")'),
-     r"\1"),
-    # Python 3 unicode adds "b".
-    (re.compile("b('[a-zA-Z0-9]*?')"),
-     r"\1"),
-    (re.compile('b("[a-zA-Z0-9]*?")'),
-     r"\1"),
-    # Python 3 renamed builtins
-    (re.compile('__builtin__'),
-     r"builtins"),
-    # Python 3 adds module name to exceptions.
-    (re.compile("zope.security.interfaces.ForbiddenAttribute"),
-     r"ForbiddenAttribute"),
-])
-
-
-class ConnectionStub(object):
+class ConnectionStub:
 
     _id = 0
 
@@ -77,13 +55,9 @@ def tearDown(test):
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocFileSuite(
-            'README.txt'),
-        doctest.DocFileSuite(
-            'mapping.txt'),
-        doctest.DocFileSuite(
-            'constructors.txt'),
-        doctest.DocFileSuite(
-            'adapters.txt', setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS),
+        doctest.DocFileSuite('README.txt'),
+        doctest.DocFileSuite('mapping.txt'),
+        doctest.DocFileSuite('constructors.txt'),
+        doctest.DocFileSuite('adapters.txt', setUp=setUp, tearDown=tearDown,
+                             optionflags=doctest.ELLIPSIS),
     ))

@@ -25,7 +25,7 @@ import zc.sourcefactory.mapping
 @zope.component.adapter(zc.sourcefactory.mapping.ValueMappingSource,
                         zope.publisher.interfaces.browser.IBrowserRequest)
 @zope.interface.implementer(zope.browser.interfaces.ITerms)
-class MappedTerms(object):
+class MappedTerms:
     """A terms implementation that knows how to handle a source that was
     created through a source factory.
     """
