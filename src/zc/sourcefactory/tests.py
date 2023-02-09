@@ -17,6 +17,7 @@
 import doctest
 import re
 import unittest
+
 import ZODB.interfaces
 import ZODB.utils
 import zope.component
@@ -28,6 +29,7 @@ from zope.site.interfaces import IFolder
 from zope.testing import renormalizing
 
 import zc.sourcefactory
+
 
 checker = renormalizing.RENormalizing([
     # Python 3 unicode removed the "u".

@@ -16,7 +16,9 @@
 import doctest
 import unittest
 
-from zc.sourcefactory.tests import setUp, tearDown, checker
+from zc.sourcefactory.tests import checker
+from zc.sourcefactory.tests import setUp
+from zc.sourcefactory.tests import tearDown
 
 
 def test_suite():

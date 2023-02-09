@@ -13,9 +13,9 @@
 ##############################################################################
 """
 """
-import zope.interface
-import zope.component
 import zope.browser.interfaces
+import zope.component
+import zope.interface
 import zope.publisher.interfaces.browser
 import zope.schema.interfaces
 

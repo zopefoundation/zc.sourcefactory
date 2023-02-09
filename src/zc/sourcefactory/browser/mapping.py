@@ -13,10 +13,10 @@
 ##############################################################################
 """Mapping-source related terms stuff
 """
-import zope.proxy
-import zope.interface
-import zope.component
 import zope.browser
+import zope.component
+import zope.interface
+import zope.proxy
 import zope.publisher.interfaces.browser
 
 import zc.sourcefactory.mapping

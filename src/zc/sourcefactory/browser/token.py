@@ -16,15 +16,15 @@
 import hashlib
 import sys
 
-import ZODB.utils
-import ZODB.interfaces
 import persistent.interfaces
-
-import zope.proxy
+import ZODB.interfaces
+import ZODB.utils
 import zope.component
 import zope.interface
+import zope.proxy
 
 import zc.sourcefactory.interfaces
+
 
 try:
     unicode

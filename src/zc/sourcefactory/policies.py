@@ -17,11 +17,13 @@
 __docformat__ = "reStructuredText"
 
 
-from zope.dublincore import interfaces as dublincoreinterfaces
-import zc.sourcefactory.browser.source
-import zc.sourcefactory.interfaces
 import zope.component
 import zope.intid.interfaces
+from zope.dublincore import interfaces as dublincoreinterfaces
+
+import zc.sourcefactory.browser.source
+import zc.sourcefactory.interfaces
+
 
 try:
     unicode
