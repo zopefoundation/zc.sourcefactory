@@ -21,7 +21,7 @@ import zope.schema.interfaces
 
 
 @zope.interface.implementer(zope.schema.interfaces.IContextSourceBinder)
-class ValueMappingSourceContextBinder(object):
+class ValueMappingSourceContextBinder:
 
     def __init__(self, base, map):
         self.base = base
@@ -33,7 +33,7 @@ class ValueMappingSourceContextBinder(object):
 
 
 @zope.interface.implementer(zope.schema.interfaces.IIterableSource)
-class ValueMappingSource(object):
+class ValueMappingSource:
 
     def __init__(self, base, map):
         self.base = base

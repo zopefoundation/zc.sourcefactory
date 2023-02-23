@@ -24,7 +24,7 @@ import zc.sourcefactory.interfaces
 
 
 @zope.interface.implementer(zc.sourcefactory.interfaces.IFactoredSource)
-class FactoredSource(object):
+class FactoredSource:
     """An iterable source that was created from a source factory."""
 
     factory = None

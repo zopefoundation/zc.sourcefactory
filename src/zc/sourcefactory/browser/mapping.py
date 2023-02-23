@@ -13,10 +13,10 @@
 ##############################################################################
 """Mapping-source related terms stuff
 """
-import zope.proxy
-import zope.interface
-import zope.component
 import zope.browser
+import zope.component
+import zope.interface
+import zope.proxy
 import zope.publisher.interfaces.browser
 
 import zc.sourcefactory.mapping
@@ -25,7 +25,7 @@ import zc.sourcefactory.mapping
 @zope.component.adapter(zc.sourcefactory.mapping.ValueMappingSource,
                         zope.publisher.interfaces.browser.IBrowserRequest)
 @zope.interface.implementer(zope.browser.interfaces.ITerms)
-class MappedTerms(object):
+class MappedTerms:
     """A terms implementation that knows how to handle a source that was
     created through a source factory.
     """

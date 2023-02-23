@@ -17,23 +17,19 @@
 __docformat__ = "reStructuredText"
 
 
-from zope.dublincore import interfaces as dublincoreinterfaces
-import zc.sourcefactory.browser.source
-import zc.sourcefactory.interfaces
 import zope.component
 import zope.intid.interfaces
+from zope.dublincore import interfaces as dublincoreinterfaces
 
-try:
-    unicode
-except NameError:
-    # PY3: Define unicode
-    unicode = str
+import zc.sourcefactory.browser.source
+import zc.sourcefactory.interfaces
+
 
 # Term policies
 
 
 @zope.interface.implementer(zc.sourcefactory.interfaces.ITermPolicy)
-class BasicTermPolicy(object):
+class BasicTermPolicy:
     """A basic term policy.
 
     createTerm creates a FactoredTerm object.
@@ -57,7 +53,7 @@ class BasicTermPolicy(object):
         elif isinstance(value, bytes):
             title = value.decode()
         else:
-            title = unicode(value)
+            title = str(value)
         return title
 
 
@@ -71,17 +67,17 @@ class BasicContextualTermPolicy(BasicTermPolicy):
     """
 
     def createTerm(self, context, source, value, title, token, request):
-        return super(BasicContextualTermPolicy, self).createTerm(
+        return super().createTerm(
             source, value, title, token, request)
 
     def getTitle(self, context, value):
-        return super(BasicContextualTermPolicy, self).getTitle(value)
+        return super().getTitle(value)
 
 
 # Token policies
 
 @zope.interface.implementer(zc.sourcefactory.interfaces.ITokenPolicy)
-class BasicTokenPolicy(object):
+class BasicTokenPolicy:
     """A basic token policy.
 
     getToken adapts the value to IToken
@@ -116,11 +112,11 @@ class BasicContextualTokenPolicy(BasicTokenPolicy):
         raise KeyError("No value with token '%s'" % token)
 
     def getToken(self, context, value):
-        return super(BasicContextualTokenPolicy, self).getToken(value)
+        return super().getToken(value)
 
 
 @zope.interface.implementer(zc.sourcefactory.interfaces.ITokenPolicy)
-class IntIdTokenPolicy(object):
+class IntIdTokenPolicy:
     """A token policy based on intids."""
 
     def getValue(self, source, token):
@@ -148,7 +144,7 @@ class IntIdTokenPolicy(object):
 # Value policies
 
 @zope.interface.implementer(zc.sourcefactory.interfaces.IValuePolicy)
-class BasicValuePolicy(object):
+class BasicValuePolicy:
     """An abstract basic value policy.
 
     `getValues()` is not implemented.

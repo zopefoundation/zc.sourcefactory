@@ -43,7 +43,7 @@ For each value we get a factored term:
 
 Unicode values are allowed as well:
 
-  >>> terms.getTerm(u'\xd3')
+  >>> terms.getTerm('\xd3')
   <zc.sourcefactory.browser.source.FactoredTerm object at 0x...>
 
 Our terms are ITitledTokenizedTerm-compatible:
@@ -57,14 +57,14 @@ In the most simple case, the title of a term is the string representation of
 the object:
 
   >>> terms.getTerm('a').title
-  u'a'
+  'a'
 
 If an adapter from the value to IDCDescriptiveProperties exists, the title
 will be retrieved from this adapter:
 
   >>> import persistent
   >>> class MyObject(persistent.Persistent):
-  ...    custom_title = u'My custom title'
+  ...    custom_title = 'My custom title'
   ...    _p_oid = 12
   >>> class DCDescriptivePropertiesAdapter(object):
   ...    def __init__(self, context):
@@ -75,7 +75,7 @@ will be retrieved from this adapter:
   >>> provideAdapter(DCDescriptivePropertiesAdapter, [MyObject],
   ...     IDCDescriptiveProperties)
   >>> terms.getTerm(MyObject()).title
-  u'My custom title'
+  'My custom title'
 
 Extended use: provide your own titles
 =====================================
@@ -95,9 +95,9 @@ determine the title for a value:
   >>> o2 = MyObject()
   >>> o2.custom_title = u"Object two"
   >>> terms2.getTerm(o1).title
-  u'Custom title Object one'
+  'Custom title Object one'
   >>> terms2.getTerm(o2).title
-  u'Custom title Object two'
+  'Custom title Object two'
 
 
 Extended use: provide your own tokens
@@ -153,7 +153,7 @@ Contextual sources
 Let's start with an object that we can use as the context:
 
   >>> zip_to_city = {'06112': 'Halle',
-  ...                '06844': 'Dessau'}
+  ...                '06844': 'Dessa'}
   >>> import zc.sourcefactory.contextual
   >>> class DemoContextualSource(
   ...     zc.sourcefactory.contextual.BasicContextualSourceFactory):
@@ -183,7 +183,7 @@ For each value we get a factored term with the right title from the context:
   >>> terms.getTerm('06844')
   <zc.sourcefactory.browser.source.FactoredTerm object at 0x...>
   >>> terms.getTerm('06844').title
-  'Dessau'
+  'Dessa'
   >>> terms.getTerm('06844').token
   'token-06844'
 

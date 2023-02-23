@@ -16,8 +16,9 @@
 """
 __docformat__ = "reStructuredText"
 
-import zope.schema.interfaces
 import zope.component
+import zope.schema.interfaces
+
 import zc.sourcefactory.source
 
 
