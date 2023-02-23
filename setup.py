@@ -27,7 +27,7 @@ def read_file(*args):
 
 setup(
     name='zc.sourcefactory',
-    version='2.0.dev0',
+    version='2.0',
     author='Zope Corporation and Contributors',
     author_email='zope-dev@zope.dev',
     url='https://github.com/zopefoundation/zc.sourcefactory',
