@@ -76,4 +76,4 @@ def fromPersistent(value):
 @zope.interface.implementer(zc.sourcefactory.interfaces.IToken)
 def fromInterface(value):
     # Interface are identified by their module path and name
-    return "{}.{}".format(value.__module__, value.__name__)
+    return f"{value.__module__}.{value.__name__}"

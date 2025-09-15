@@ -28,12 +28,12 @@ def read_file(*args):
 setup(
     name='zc.sourcefactory',
     version='2.1.dev0',
-    author='Zope Corporation and Contributors',
+    author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
     url='https://github.com/zopefoundation/zc.sourcefactory',
     keywords='zope vocabulary source factory',
     description='An easy way to create custom Zope sources.',
-    license='ZPL 2.1',
+    license='ZPL-2.1',
     long_description=(
         read_file('README.rst') +
         '\n\n.. contents::\n\n' +
@@ -54,11 +54,11 @@ setup(
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
@@ -66,7 +66,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     include_package_data=True,
-    python_requires='>=3.7',
+    python_requires='>=3.9',
     install_requires=[
         'ZODB',
         'persistent',
