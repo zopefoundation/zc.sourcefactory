@@ -15,7 +15,6 @@
 """
 import os.path
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -27,7 +26,7 @@ def read_file(*args):
 
 setup(
     name='zc.sourcefactory',
-    version='2.1.dev0',
+    version='3.0.dev0',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
     url='https://github.com/zopefoundation/zc.sourcefactory',
@@ -63,8 +62,6 @@ setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
     ],
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
     include_package_data=True,
     python_requires='>=3.9',
     install_requires=[
@@ -80,14 +77,13 @@ setup(
         'zope.publisher',
         'zope.schema',
     ],
-    namespace_packages=['zc'],
     extras_require={
         'test': [
             'zope.component[zcml]',
             'persistent >= 4.4.3',
             'zope.site',
             'zope.testing',
-            'zope.testrunner',
+            'zope.testrunner >= 6.4',
             'zope.keyreference',
         ]},
     zip_safe=False,
