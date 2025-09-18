@@ -55,9 +55,9 @@ def tearDown(test):
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocFileSuite('README.txt'),
-        doctest.DocFileSuite('mapping.txt'),
-        doctest.DocFileSuite('constructors.txt'),
-        doctest.DocFileSuite('adapters.txt', setUp=setUp, tearDown=tearDown,
+        doctest.DocFileSuite('README.rst'),
+        doctest.DocFileSuite('mapping.rst'),
+        doctest.DocFileSuite('constructors.rst'),
+        doctest.DocFileSuite('adapters.rst', setUp=setUp, tearDown=tearDown,
                              optionflags=doctest.ELLIPSIS),
     ))

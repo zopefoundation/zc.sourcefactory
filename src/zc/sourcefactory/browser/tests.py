@@ -23,9 +23,9 @@ from zc.sourcefactory.tests import tearDown
 def test_suite():
     return unittest.TestSuite((
         doctest.DocFileSuite(
-            'token.txt', setUp=setUp, tearDown=tearDown,
+            'token.rst', setUp=setUp, tearDown=tearDown,
             optionflags=doctest.ELLIPSIS),
         doctest.DocFileSuite(
-            'README.txt', setUp=setUp, tearDown=tearDown,
+            'README.rst', setUp=setUp, tearDown=tearDown,
             optionflags=doctest.ELLIPSIS),
     ))
