@@ -36,13 +36,13 @@ setup(
     long_description=(
         read_file('README.rst') +
         '\n\n.. contents::\n\n' +
-        read_file('src', 'zc', 'sourcefactory', 'README.txt') +
-        read_file('src', 'zc', 'sourcefactory', 'mapping.txt') +
-        read_file('src', 'zc', 'sourcefactory', 'constructors.txt') +
-        read_file('src', 'zc', 'sourcefactory', 'adapters.txt') +
-        read_file('src', 'zc', 'sourcefactory', 'browser', 'README.txt') +
-        read_file('src', 'zc', 'sourcefactory', 'browser', 'token.txt') +
-        read_file('CHANGES.txt')
+        read_file('src', 'zc', 'sourcefactory', 'README.rst') +
+        read_file('src', 'zc', 'sourcefactory', 'mapping.rst') +
+        read_file('src', 'zc', 'sourcefactory', 'constructors.rst') +
+        read_file('src', 'zc', 'sourcefactory', 'adapters.rst') +
+        read_file('src', 'zc', 'sourcefactory', 'browser', 'README.rst') +
+        read_file('src', 'zc', 'sourcefactory', 'browser', 'token.rst') +
+        read_file('CHANGES.rst')
     ),
     classifiers=[
         'Topic :: Software Development',
