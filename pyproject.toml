@@ -90,7 +90,15 @@ exclude_lines = [
 directory = "parts/htmlcov"
 
 [tool.setuptools.dynamic]
-readme = {file = ["README.rst", "CHANGES.rst"]}
+readme = {file = [
+    "README.rst",
+    "src/zc/sourcefactory/README.rst",
+    "src/zc/sourcefactory/mapping.rst",
+    "src/zc/sourcefactory/constructors.rst",
+    "src/zc/sourcefactory/adapters.rst",
+    "src/zc/sourcefactory/browser/README.rst",
+    "src/zc/sourcefactory/browser/token.rst",
+    "CHANGES.rst"]}
 
 [tool.zest-releaser]
 create-wheel = false
